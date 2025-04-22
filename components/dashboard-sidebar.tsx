@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 import {
   Brain,
   LayoutDashboard,
@@ -16,11 +16,11 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react"
+} from "lucide-react";
 
 export default function DashboardSidebar() {
-  const pathname = usePathname()
-  const [collapsed, setCollapsed] = useState(false)
+  const pathname = usePathname();
+  const [collapsed, setCollapsed] = useState(false);
 
   const navItems = [
     {
@@ -53,27 +53,41 @@ export default function DashboardSidebar() {
       href: "/dashboard/assistant",
       icon: <MessageSquare className="h-5 w-5" />,
     },
-    {
-      title: "Settings",
-      href: "/dashboard/settings",
-      icon: <Settings className="h-5 w-5" />,
-    },
-  ]
+    // {
+    //   title: "Settings",
+    //   href: "/dashboard/settings",
+    //   icon: <Settings className="h-5 w-5" />,
+    // },
+  ];
 
   return (
     <div
       className={cn(
         "bg-white border-r border-gray-200 flex flex-col h-screen transition-all duration-300",
-        collapsed ? "w-16" : "w-64",
+        collapsed ? "w-16" : "w-64"
       )}
     >
       <div className="p-4 border-b border-gray-200 flex items-center justify-between">
-        <div className={cn("flex items-center gap-2", collapsed && "justify-center")}>
+        <div
+          className={cn(
+            "flex items-center gap-2",
+            collapsed && "justify-center"
+          )}
+        >
           <Brain className="h-6 w-6 text-blue-600" />
           {!collapsed && <span className="font-bold">QuantumFit AI</span>}
         </div>
-        <Button variant="ghost" size="icon" onClick={() => setCollapsed(!collapsed)} className="h-8 w-8">
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setCollapsed(!collapsed)}
+          className="h-8 w-8"
+        >
+          {collapsed ? (
+            <ChevronRight className="h-4 w-4" />
+          ) : (
+            <ChevronLeft className="h-4 w-4" />
+          )}
         </Button>
       </div>
 
@@ -85,8 +99,10 @@ export default function DashboardSidebar() {
               href={item.href}
               className={cn(
                 "flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
-                pathname === item.href ? "bg-blue-50 text-blue-700" : "text-gray-700 hover:bg-gray-100",
-                collapsed && "justify-center",
+                pathname === item.href
+                  ? "bg-blue-50 text-blue-700"
+                  : "text-gray-700 hover:bg-gray-100",
+                collapsed && "justify-center"
               )}
             >
               {item.icon}
@@ -98,7 +114,9 @@ export default function DashboardSidebar() {
 
       <div className="p-4 border-t border-gray-200">
         <div className={cn("flex items-center", collapsed && "justify-center")}>
-          <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">JD</div>
+          <div className="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600">
+            JD
+          </div>
           {!collapsed && (
             <div className="ml-3">
               <p className="text-sm font-medium">John Doe</p>
@@ -108,6 +126,5 @@ export default function DashboardSidebar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-
